@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:tours/widget/text_widget.dart';
 import 'package:tours/widget/textfield_widget.dart';
 
 class SignupPage extends StatefulWidget {
@@ -20,16 +21,16 @@ class _SignupPageState extends State<SignupPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              buildText(
-                'Sign up',
-                28,
-                Colors.white
+              const TextWidget(
+                text: 'Sign up',
+                fontSize: 28,
+                color: Colors.white,
               ),
               const SizedBox(height: 8),
-              buildText(
-                'Create account to arrange picnic for school, college and more',
-                12, 
-                Colors.white
+              const TextWidget(
+                text: 'Create account to arrange picnic for school, college and more',
+                fontSize: 12,
+                color: Colors.white,
               ),
               const SizedBox(height: 24),
               Padding(
@@ -42,14 +43,17 @@ class _SignupPageState extends State<SignupPage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16)
                   ),
-                  child: const Column(
-                    children: [
-                      TextFieldWidget(label: 'User Name'),
-                      TextFieldWidget(label: 'Email'),
-                      TextFieldWidget(label: 'Phone'),
-                      TextFieldWidget(label: 'Password'),
-                      TextFieldWidget(label: 'Confirm Password')
-                    ],
+                  child: const SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TextFieldWidget(label: 'User Name'),
+                        TextFieldWidget(label: 'Phone'),
+                        TextFieldWidget(label: 'Address'),
+                        TextFieldWidget(label: 'Gander'),
+                        TextFieldWidget(label: 'Password'),
+                        TextFieldWidget(label: 'Confirm Password')
+                      ],
+                    ),
                   )
                 ),
               ),
@@ -60,10 +64,10 @@ class _SignupPageState extends State<SignupPage> {
                   minimumSize: const Size(250, 48)
                 ),
                 icon: const Icon(Icons.arrow_forward, size: 32, color: Color(0xff1E2758)),
-                label: buildText(
-                  'Sign up',
-                  24,
-                  const Color(0xff1E2758)
+                label: const TextWidget(
+                  text: 'Sign up',
+                  fontSize: 24,
+                  color: Color(0xff1E2758),
                 ),
                 onPressed: () {},
               ),
@@ -95,14 +99,4 @@ class _SignupPageState extends State<SignupPage> {
       ),
     );
   }
-
-  Widget buildText(String text, double fontSize, Color color) => Text(
-    text,
-    textAlign: TextAlign.center,
-    style: TextStyle(
-      fontFamily: 'Exo2',
-      fontSize: fontSize,
-      color: color
-    ),
-  );
 }

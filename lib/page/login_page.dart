@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tours/page/drawer_menu_page.dart';
+import 'package:tours/widget/text_widget.dart';
 import 'package:tours/widget/textfield_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,16 +22,16 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              buildText(
-                'Welcome to our Tour\nPlan Apps',
-                24,
-                Colors.white
+              const TextWidget(
+                text: 'Welcome to our Tour\nPlan Apps',
+                fontSize: 24,
+                color: Colors.white,
               ),
               const SizedBox(height: 12),
-              buildText(
-                'If you want to have a picnic inside Rajshahi division then crate an account and check the picnic spots',
-                12,
-                Colors.white
+              const TextWidget(
+                text: 'If you want to have a picnic inside Rajshahi division then crate an account and check the picnic spots',
+                fontSize: 12,
+                color: Colors.white,
               ),
               const SizedBox(height: 100),
               Padding(
@@ -58,10 +59,10 @@ class _LoginPageState extends State<LoginPage> {
                   minimumSize: const Size(250,48) //Size.fromHeight(50)
                 ),
                 icon: const Icon(Icons.lock_open, size: 30, color: Color(0xff1E2758)),
-                label: buildText(
-                  'Login',
-                  24,
-                  const Color(0xff1E2758)
+                label: const TextWidget(
+                  text: 'Login',
+                  fontSize: 24,
+                  color: Color(0xff1E2758),
                 ),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerMenuPage()));
@@ -95,14 +96,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  Widget buildText(String text, double fontSize, Color color) => Text(
-    text,
-    textAlign: TextAlign.center,
-    style: TextStyle(
-      fontFamily: 'Exo2',
-      fontSize: fontSize,
-      color: color
-    ),
-  );
 }
