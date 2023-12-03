@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tours/page/food_plan_page.dart';
+import 'package:tours/page/tour_plan_page.dart';
+import 'package:tours/widget/appbar_widget.dart';
 import 'package:tours/widget/text_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,19 +74,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+      appBar: customeAppBar(
         leading: IconButton(
           icon: const FaIcon(FontAwesomeIcons.alignLeft),
           onPressed: widget.drawer
         ),
-        title: const Text('Explore Here', style: TextStyle(fontFamily: 'Exo2'),),
+        title: 'Explore Here'
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 54, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,18 +100,23 @@ class _HomePageState extends State<HomePage> {
           
               // Tour Palnning Part
               const SizedBox(height: 18),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextWidget(
+                  const TextWidget(
                     text: 'Tour Plan',
                     fontSize: 18,
                     color: Colors.white,
                   ),
-                  TextWidget(
-                    text: 'See details',
-                    fontSize: 12,
-                    color: Colors.orange,
+                  MaterialButton(
+                    child: const TextWidget(
+                      text: 'See details',
+                      fontSize: 12,
+                      color: Colors.orange,
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TourPlanPage()));
+                    },
                   )
                 ],
               ),
@@ -155,6 +160,7 @@ class _HomePageState extends State<HomePage> {
                 fontSize: 18,
                 color: Colors.white,
               ),
+              const SizedBox(height: 10),
               GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -179,18 +185,23 @@ class _HomePageState extends State<HomePage> {
           
               // Food Planning Part
               const SizedBox(height: 18),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextWidget(
+                  const TextWidget(
                     text: 'Food Plan',
                     fontSize: 18,
                     color: Colors.white,
                   ),
-                  TextWidget(
-                    text: 'See details',
-                    fontSize: 12,
-                    color: Colors.orange,
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FoodPlanPage()));
+                    },
+                    child: const TextWidget(
+                      text: 'See details',
+                      fontSize: 12,
+                      color: Colors.orange,
+                    ),
                   )
                 ],
               ),

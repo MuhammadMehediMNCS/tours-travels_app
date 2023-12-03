@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:tours/page/drawer_menu_page.dart';
 import 'package:tours/widget/text_widget.dart';
 import 'package:tours/widget/textfield_widget.dart';
 
@@ -13,6 +14,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  final _formKey = GlobalKey<FormState>();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,16 +46,19 @@ class _SignupPageState extends State<SignupPage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16)
                   ),
-                  child: const SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        TextFieldWidget(label: 'User Name'),
-                        TextFieldWidget(label: 'Phone'),
-                        TextFieldWidget(label: 'Address'),
-                        TextFieldWidget(label: 'Gander'),
-                        TextFieldWidget(label: 'Password'),
-                        TextFieldWidget(label: 'Confirm Password')
-                      ],
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: const Column(
+                        children: [
+                          TextFieldWidget(label: 'User Name', isRequired: true),
+                          TextFieldWidget(label: 'Phone', isRequired: true),
+                          TextFieldWidget(label: 'Address', isRequired: true),
+                          TextFieldWidget(label: 'Gander', isRequired: true),
+                          TextFieldWidget(label: 'Password', isRequired: true),
+                          TextFieldWidget(label: 'Confirm Password', isRequired: true)
+                        ],
+                      ),
                     ),
                   )
                 ),
@@ -69,7 +75,12 @@ class _SignupPageState extends State<SignupPage> {
                   fontSize: 24,
                   color: Color(0xff1E2758),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  final form = _formKey.currentState;
+                  if(form!.validate()) {
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const DrawerMenuPage()), (route) => false);
+                  }
+                },
               ),
               const SizedBox(height: 12),
               RichText(

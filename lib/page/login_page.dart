@@ -14,6 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,17 +40,21 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(12),
                 child: Container(
                   padding: const EdgeInsets.all(10),
-                  height: 230,
+                  height: 250,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16)
                   ),
-                  child: const Column(
-                    children: [
-                      TextFieldWidget(label: 'Email',),
-                      TextFieldWidget(label: 'Password',)
-                    ],
+                  child: Form(
+                    key: _formKey,
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextFieldWidget(label: 'Email', isRequired: true),
+                        TextFieldWidget(label: 'Password', isRequired: true)
+                      ],
+                    ),
                   )
                 ),
               ),
@@ -65,7 +71,11 @@ class _LoginPageState extends State<LoginPage> {
                   color: Color(0xff1E2758),
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerMenuPage()));
+                  final form = _formKey.currentState;
+
+                  if(form!.validate()) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const DrawerMenuPage()));
+                  }
                 },
               ),
               const SizedBox(height: 14),

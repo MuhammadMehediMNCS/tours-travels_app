@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tours/page/home_page.dart';
+import 'package:tours/page/profile_page.dart';
 import 'package:tours/widget/drawer_widget.dart';
 
 class DrawerMenuPage extends StatefulWidget {
@@ -62,7 +63,9 @@ class _DrawerMenuPageState extends State<DrawerMenuPage> {
         DrawerWidget(
           leading: Icons.person,
           title: 'Profile',
-          onClicked: () {}
+          onClicked: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+          }
         ),
         DrawerWidget(
           leading: FontAwesomeIcons.heartCircleCheck,
